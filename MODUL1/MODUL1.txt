@@ -1,0 +1,842 @@
+{
+"_id": {
+"$oid": "6324941458115a5f019b9c8c"
+},
+"title": "No Longer Human",
+"author": "Osamu Dazai",
+"year": 1948,
+"pages": 271,
+"summary": "Lorem ipsum dolor sit amet"
+}
+
+
+{
+"_id": {
+"$oid": "63249aaf58115a5f019b9c8e"
+},
+"title": "I Am a Cat",
+"author": "Natsume Souseki",
+"year": 1905,
+"pages": 532,
+"summary": "Lorem ipsum dolor sit amet",
+"publisher": "Gramedia"
+}
+
+db.books.drop()
+
+// Insert 15 buku dengan variasi data
+db.books.insertMany([
+    // Buku lama (before 2000)
+    {
+        title: "No Longer Human",
+        author: "Osamu Dazai",
+        year: 1948,
+        pages: 271,
+        summary: "Cerita tentang seorang pria yang merasa terasing dari masyarakat",
+        publisher: "Gramedia",
+        language: "Indonesian",
+        rating: 4.8,
+        tags: ["fiction", "classic", "japanese"]
+    },
+    {
+        title: "The Setting Sun",
+        author: "Osamu Dazai",
+        year: 1947,
+        pages: 175,
+        summary: "Kisah tentang kemunduran keluarga bangsawan Jepang",
+        publisher: "Yen Press",
+        language: "English",
+        rating: 4.5,
+        tags: ["fiction", "classic", "japanese"]
+    },
+    {
+        title: "I Am a Cat",
+        author: "Natsume Souseki",
+        year: 1905,
+        pages: 532,
+        summary: "Satire tentang masyarakat Jepang dari sudut pandang kucing",
+        publisher: "Gramedia",
+        language: "Indonesian",
+        rating: 4.3,
+        tags: ["fiction", "classic", "satire"]
+    },
+    {
+        title: "Kokoro",
+        author: "Natsume Souseki",
+        year: 1914,
+        pages: 248,
+        summary: "Kisah tentang kesepian dan perubahan di era Meiji",
+        publisher: "Yen Press",
+        language: "English",
+        rating: 4.6,
+        tags: ["fiction", "classic", "psychological"]
+    },
+    
+    // Buku modern (after 2000)
+    {
+        title: "Overlord I",
+        author: "Kugane Maruyama",
+        year: 2012,
+        pages: 548,
+        summary: "Game veteran terjebak di dunia game kesayangannya",
+        publisher: "Yen Press",
+        language: "English",
+        rating: 4.7,
+        tags: ["fantasy", "light novel", "isekai"]
+    },
+    {
+        title: "Overlord II",
+        author: "Kugane Maruyama",
+        year: 2013,
+        pages: 512,
+        summary: "Petualangan Ainz Ooal Gown berlanjut",
+        publisher: "Yen Press",
+        language: "English",
+        rating: 4.6,
+        tags: ["fantasy", "light novel", "isekai"]
+    },
+    {
+        title: "Hujan",
+        author: "Tere Liye",
+        year: 2016,
+        pages: 320,
+        summary: "Kisah cinta di tengah bencana dan kehilangan memori",
+        publisher: "Gramedia",
+        language: "Indonesian",
+        rating: 4.9,
+        tags: ["fiction", "romance", "indonesian"]
+    },
+    {
+        title: "Bumi",
+        author: "Tere Liye",
+        year: 2014,
+        pages: 440,
+        summary: "Petualangan anak-anak dengan kekuatan khusus",
+        publisher: "Gramedia",
+        language: "Indonesian",
+        rating: 4.8,
+        tags: ["fantasy", "indonesian", "adventure"]
+    },
+    {
+        title: "Bulan",
+        author: "Tere Liye",
+        year: 2015,
+        pages: 398,
+        summary: "Lanjutan petualangan di dunia paralel",
+        publisher: "Gramedia",
+        language: "Indonesian",
+        rating: 4.7,
+        tags: ["fantasy", "indonesian", "adventure"]
+    },
+    {
+        title: "The Name of the Wind",
+        author: "Patrick Rothfuss",
+        year: 2007,
+        pages: 662,
+        summary: "Kisah legenda seorang musisi dan penyihir",
+        publisher: "DAW Books",
+        language: "English",
+        rating: 4.9,
+        tags: ["fantasy", "epic", "magic"]
+    },
+    
+    // Buku dengan variasi untuk demo
+    {
+        title: "Buku Tanpa Rating",
+        author: "Anonim",
+        year: 2020,
+        pages: 100,
+        summary: null,
+        publisher: "Self-publish",
+        language: "Indonesian",
+        tags: ["experimental"]
+        // Field rating TIDAK ADA
+    },
+    {
+        title: "Buku Tanpa Tags",
+        author: "John Doe",
+        year: 2021,
+        pages: 150,
+        summary: "Buku tanpa tags untuk demo",
+        publisher: "Gramedia",
+        language: "English",
+        rating: 3.5
+        // Field tags TIDAK ADA
+    },
+    {
+        title: "Buku Tipis",
+        author: "Test Author",
+        year: 2022,
+        pages: 50,
+        summary: "Buku dengan sedikit halaman",
+        publisher: "Yen Press",
+        language: "English",
+        rating: 3.0,
+        tags: ["short"]
+    },
+    {
+        title: "Buku Tebal",
+        author: "Test Author",
+        year: 2023,
+        pages: 950,
+        summary: "Buku dengan banyak halaman",
+        publisher: "Gramedia",
+        language: "Indonesian",
+        rating: 4.0,
+        tags: ["long"]
+    },
+    {
+        title: "Buku Bahasa Indonesia Lain",
+        author: "Penulis Indonesia",
+        year: 2021,
+        pages: 280,
+        summary: "Buku berbahasa Indonesia",
+        publisher: "Gramedia",
+        language: "Indonesian",
+        rating: 4.2,
+        tags: ["indonesian", "fiction"]
+    }
+])
+
+// Cek jumlah data
+db.books.countDocuments()
+
+
+// CREATE - Insert satu buku
+db.books.insertOne({
+    title: "Buku Baru",
+    author: "Penulis Baru",
+    year: 2024,
+    pages: 200,
+    publisher: "Gramedia"
+})
+
+// CREATE - Insert banyak buku
+db.books.insertMany([
+    { title: "Buku A", author: "Penulis A", year: 2023 },
+    { title: "Buku B", author: "Penulis B", year: 2024 }
+])
+
+// READ - Cari semua buku
+db.books.find()
+
+// READ - Cari dengan filter
+db.books.find({ author: "Tere Liye" })
+
+// UPDATE - Update satu buku
+db.books.updateOne(
+    { title: "Hujan" },
+    { $set: { rating: 5.0 } }
+)
+
+// DELETE - Hapus satu buku
+db.books.deleteOne({ title: "Buku Baru" })
+
+// DELETE - Hapus banyak buku
+db.books.deleteMany({ author: "Penulis A" })
+
+
+// 1. $gt (greater than) - lebih besar dari
+// Cari buku dengan halaman > 500
+db.books.find(
+    { pages: { $gt: 500 } },
+    { title: 1, pages: 1, _id: 1 }
+)
+
+// 2. $gte (greater than or equal) - lebih besar sama dengan
+// Cari buku tahun >= 2020
+db.books.find(
+    { year: { $gte: 2020 } },
+    { title: 1, year: 1, _id: 0 }
+)
+
+// 3. $lt (less than) - kurang dari
+// Cari buku dengan halaman < 200
+db.books.find(
+    { pages: { $lt: 200 } },
+    { title: 1, pages: 1, _id: 0 }
+)
+
+// 4. $lte (less than or equal) - kurang sama dengan
+// Cari buku tahun <= 1914
+db.books.find(
+    { year: { $lte: 1914 } },
+    { title: 1, year: 1, _id: 0 }
+)
+
+// 5. $ne (not equal) - tidak sama dengan
+// Cari buku yang BUKAN berbahasa Indonesian
+db.books.find(
+    { language: { $ne: "Indonesian" } },
+    { title: 1, language: 1, _id: 0 }
+)
+
+// 6. $in (in array) - termasuk dalam array
+// Cari buku dengan tahun 1948, 2012, atau 2016
+db.books.find(
+    { year: { $in: [1948, 2012, 2016] } },
+    { title: 1, year: 1, _id: 0 }
+)
+
+// 7. $nin (not in) - tidak termasuk dalam array
+// Cari buku dengan publisher selain Gramedia dan Yen Press
+db.books.find(
+    { publisher: { $nin: ["Gramedia", "Yen Press"] } },
+    { title: 1, publisher: 1, _id: 0 }
+)
+
+
+// Cari buku antara tahun 2000-2020, dengan halaman > 300
+db.books.find({
+    $and: [
+        { year: { $gte: 2000, $lte: 2020 } },
+        { pages: { $gt: 300 } }
+    ]
+}, { title: 1, year: 1, pages: 1, _id: 0 })
+
+
+// 1. $and - semua kondisi harus terpenuhi
+// Cari buku Tere Liye yang terbit setelah 2015
+db.books.find({
+    $and: [
+        { author: "Tere Liye" },
+        { year: { $gt: 2015 } }
+    ]
+}, { title: 1, author: 1, year: 1, _id: 0 })
+
+// Bentuk sederhana (tanpa $and, karena implicit AND)
+db.books.find({
+    author: "Tere Liye",
+    year: { $gt: 2015 }
+}, { title: 1, author: 1, year: 1, _id: 0 })
+
+// 2. $or - salah satu kondisi terpenuhi
+// Cari buku terbit sebelum 1950 ATAU setelah 2020
+db.books.find({
+    $or: [
+        { year: { $lt: 1950 } },
+        { year: { $gt: 2020 } }
+    ]
+}, { title: 1, year: 1, _id: 0 }).sort({ year: 1 })
+
+// 3. $not - membalikkan kondisi
+// Cari buku yang BUKAN terbitan Gramedia (cara 1: $ne)
+db.books.find({
+    publisher: { $ne: "Gramedia" }
+}, { title: 1, publisher: 1, _id: 0 })
+
+// Cari buku yang BUKAN terbitan Gramedia (cara 2: $not)
+db.books.find({
+    publisher: { $not: { $eq: "Gramedia" } }
+}, { title: 1, publisher: 1, _id: 0 })
+
+// 4. Kombinasi kompleks AND + OR
+// Cari buku Osamu Dazai ATAU Tere Liye, yang terbit setelah 1945 DAN publisher Gramedia
+db.books.find({
+    $and: [
+        {
+            $or: [
+                { author: "Osamu Dazai" },
+                { author: "Tere Liye" }
+            ]
+        },
+        { year: { $gt: 1945 } },
+        { publisher: "Gramedia" }
+    ]
+}, { title: 1, author: 1, year: 1, publisher: 1, _id: 0 })
+
+
+===========================================================
+
+// 1. $exists: true - cari field yang ADA
+// Cari buku yang PUNYA field rating
+db.books.find(
+    { rating: { $exists: true } },
+    { title: 1, rating: 1, _id: 0 }
+)
+
+// 2. $exists: false - cari field yang TIDAK ADA
+// Cari buku yang TIDAK PUNYA field rating
+db.books.find(
+    { rating: { $exists: false } },
+    { title: 1, _id: 0 }
+)
+
+// 3. Cari buku yang PUNYA field tags
+db.books.find(
+    { tags: { $exists: true } },
+    { title: 1, tags: 1, _id: 0 }
+)
+
+// 4. Cari buku yang TIDAK PUNYA field tags
+db.books.find(
+    { tags: { $exists: false } },
+    { title: 1, _id: 0 }
+)
+
+// 5. Kombinasi: cari buku yang PUNYA tags DAN rating null (ada field tapi isi null)
+db.books.insertOne({
+    title: "Buku Rating Null",
+    author: "Test",
+    year: 2024,
+    rating: null,
+    tags: ["test"]
+})
+
+db.books.find({
+    tags: { $exists: true },
+    rating: null
+}, { title: 1, rating: 1, tags: 1, _id: 0 })
+
+
+// 1. Regex case sensitive - cari judul mengandung "the"
+db.books.find(
+    { title: { $regex: /the/ } },
+    { title: 1, _id: 0 }
+)
+
+// 2. Regex case insensitive - cari judul mengandung "the" (huruf besar/kecil)
+db.books.find(
+    { title: { $regex: /the/i } },
+    { title: 1, _id: 0 }
+)
+
+// 3. Starts with - cari judul diawali "Buku"
+db.books.find(
+    { title: { $regex: /^Buku/ } },
+    { title: 1, _id: 0 }
+)
+
+// 4. Ends with - cari judul diakhiri "I" atau "II"
+db.books.find(
+    { title: { $regex: /I$/ } },
+    { title: 1, _id: 0 }
+)
+
+db.books.find(
+    { title: { $regex: /II$/ } },
+    { title: 1, _id: 0 }
+)
+
+// 5. Contains - cari author mengandung "maru" (dimana pun)
+db.books.find(
+    { author: { $regex: /maru/i } },
+    { title: 1, author: 1, _id: 0 }
+)
+
+// 6. Kombinasi regex dengan filter lain
+// Cari buku Osamu Dazai yang judulnya mengandung "Sun"
+db.books.find({
+    author: { $regex: /dazai/i },
+    title: { $regex: /sun/i }
+}, { title: 1, author: 1, _id: 0 })
+
+// 7. Regex untuk multiple pattern (| = OR)
+// Cari judul mengandung "Sun" ATAU "Moon"
+db.books.find(
+    { title: { $regex: /Sun|Moon/ } },
+    { title: 1, _id: 0 }
+)
+
+
+// 1. SORT - Mengurutkan
+// Sort tahun DESC (terbaru ke lama)
+db.books.find(
+    {},
+    { title: 1, year: 1, _id: 0 }
+).sort({ year: -1 })
+
+// Sort tahun ASC (lama ke terbaru)
+db.books.find(
+    {},
+    { title: 1, year: 1, _id: 0 }
+).sort({ year: 1 })
+
+// Sort multi-level: by author ASC, then year DESC
+db.books.find(
+    {},
+    { title: 1, author: 1, year: 1, _id: 0 }
+).sort({ author: 1, year: -1 })
+
+// 2. LIMIT - Batasi jumlah hasil
+// Ambil 3 buku terbaru
+db.books.find(
+    {},
+    { title: 1, year: 1, _id: 0 }
+).sort({ year: -1 }).limit(3)
+
+// 3. SKIP - Lewati sejumlah data
+// Lewati 5 buku pertama, ambil 3 berikutnya
+db.books.find(
+    {},
+    { title: 1, year: 1, _id: 0 }
+).sort({ year: 1 }).skip(5).limit(3)
+
+// 4. PAGINATION - Implementasi halaman
+// Halaman 1: buku 1-5
+db.books.find().sort({ year: 1 }).skip(0).limit(5)
+
+// Halaman 2: buku 6-10
+db.books.find().sort({ year: 1 }).skip(5).limit(5)
+
+// Halaman 3: buku 11-15
+db.books.find().sort({ year: 1 }).skip(10).limit(5)
+
+// 5. Kombinasi dengan filter
+// Ambil 2 buku terbaru dari Gramedia
+db.books.find(
+    { publisher: "Gramedia" },
+    { title: 1, publisher: 1, year: 1, _id: 0 }
+).sort({ year: -1 }).limit(2)
+
+
+// 1. Include field tertentu (1 = tampilkan)
+// Tampilkan hanya judul dan author
+db.books.find(
+    { author: "Tere Liye" },
+    { title: 1, author: 1, _id: 0 }
+)
+
+// 2. Exclude field tertentu (0 = sembunyikan)
+// Tampilkan semua field kecuali summary dan tags
+db.books.find(
+    { author: "Osamu Dazai" },
+    { summary: 0, tags: 0 }
+)
+
+// 3. Kombinasi (biasanya tidak campur 1 dan 0, kecuali _id)
+// Tampilkan judul, tahun, rating, sembunyikan _id
+db.books.find(
+    { rating: { $gte: 4.8 } },
+    { title: 1, year: 1, rating: 1, _id: 0 }
+)
+
+// 4. Projection di aggregation pipeline
+db.books.aggregate([
+    { $match: { publisher: "Gramedia" } },
+    { $project: { 
+        judul_buku: "$title", 
+        tahun_terbit: "$year",
+        penulis: "$author",
+        _id: 0 
+    } }
+])
+
+
+// 1. $group dengan $sum - hitung jumlah buku per publisher
+db.books.aggregate([
+    {
+        $group: {
+            _id: "$publisher",
+            totalBuku: { $sum: 1 }
+        }
+    },
+    { $sort: { totalBuku: -1 } }
+])
+
+// 2. $group dengan $avg - rata-rata halaman per author
+db.books.aggregate([
+    {
+        $group: {
+            _id: "$author",
+            rataHalaman: { $avg: "$pages" },
+            totalBuku: { $sum: 1 }
+        }
+    },
+    { $sort: { rataHalaman: -1 } }
+])
+
+// 3. $group dengan $max dan $min
+// Cari buku tertua dan terbaru per author
+db.books.aggregate([
+    {
+        $group: {
+            _id: "$author",
+            bukuTerbaru: { $max: "$year" },
+            bukuTertua: { $min: "$year" },
+            judulBuku: { $push: "$title" }
+        }
+    }
+])
+
+// 4. $match + $group - filter dulu baru group
+// Hitung jumlah buku per publisher untuk buku setelah 2000
+db.books.aggregate([
+    { $match: { year: { $gt: 2000 } } },
+    {
+        $group: {
+            _id: "$publisher",
+            totalBuku: { $sum: 1 }
+        }
+    },
+    { $sort: { totalBuku: -1 } }
+])
+
+// 5. Multiple stages - statistik lengkap
+db.books.aggregate([
+    // Stage 1: Filter buku dengan rating ada
+    { $match: { rating: { $exists: true } } },
+    
+    // Stage 2: Group by publisher
+    {
+        $group: {
+            _id: "$publisher",
+            totalBuku: { $sum: 1 },
+            rataRating: { $avg: "$rating" },
+            totalHalaman: { $sum: "$pages" },
+            rataHalaman: { $avg: "$pages" },
+            daftarJudul: { $push: "$title" }
+        }
+    },
+    
+    // Stage 3: Hanya tampilkan yang totalBuku > 1
+    { $match: { totalBuku: { $gt: 1 } } },
+    
+    // Stage 4: Sort by rataRating
+    { $sort: { rataRating: -1 } },
+    
+    // Stage 5: Format output
+    {
+        $project: {
+            publisher: "$_id",
+            totalBuku: 1,
+            rataRating: { $round: ["$rataRating", 1] },
+            rataHalaman: { $round: ["$rataHalaman", 0] },
+            _id: 0
+        }
+    }
+])
+
+// 6. Aggregation dengan bucket (kategorisasi)
+// Kelompokkan buku berdasarkan range tahun
+db.books.aggregate([
+    {
+        $bucket: {
+            groupBy: "$year",
+            boundaries: [1900, 1950, 2000, 2025],
+            default: "Lainnya",
+            output: {
+                totalBuku: { $sum: 1 },
+                judul: { $push: "$title" }
+            }
+        }
+    }
+])
+
+
+// 1. $inc - increment (tambah/kurang angka)
+// Tambah 50 halaman ke Buku Tipis
+db.books.updateOne(
+    { title: "Buku Tipis" },
+    { $inc: { pages: 50 } }
+)
+// pages dari 50 jadi 100
+
+// Kurangi 10 halaman
+db.books.updateOne(
+    { title: "Buku Tipis" },
+    { $inc: { pages: -10 } }
+)
+// pages dari 100 jadi 90
+
+// 2. $mul - multiply (kali angka)
+// Double rating buku Hujan
+db.books.updateOne(
+    { title: "Hujan" },
+    { $mul: { rating: 2 } }
+)
+
+// 3. $unset - hapus field
+// Hapus field summary dari Buku Tanpa Rating
+db.books.updateOne(
+    { title: "Buku Tanpa Rating" },
+    { $unset: { summary: "" } }
+)
+
+// 4. $rename - ganti nama field
+// Ganti field 'language' jadi 'bahasa'
+db.books.updateMany(
+    {},
+    { $rename: { "language": "bahasa" } }
+)
+
+// 5. $set - tambah/ubah field (sudah dipelajari)
+// Tambah field 'stock' dengan default 10
+db.books.updateMany(
+    {},
+    { $set: { stock: 10 } }
+)
+
+// 6. $currentDate - set ke waktu sekarang
+db.books.updateOne(
+    { title: "Hujan" },
+    { 
+        $set: { rating: 5.0 },
+        $currentDate: { lastModified: true }
+    }
+)
+
+// 7. Update dengan kondisi (upsert)
+// Cari, kalau ada update, kalau tidak ada insert
+db.books.updateOne(
+    { title: "Buku Baru Banget" },
+    { 
+        $set: { 
+            author: "Penulis Baru",
+            year: 2024,
+            pages: 300
+        } 
+    },
+    { upsert: true }
+)
+
+
+// 1. countDocuments() - hitung jumlah dokumen
+// Hitung total semua buku
+db.books.countDocuments()
+
+// Hitung buku Gramedia
+db.books.countDocuments({ publisher: "Gramedia" })
+
+// Hitung buku dengan rating >= 4.5
+db.books.countDocuments({ rating: { $gte: 4.5 } })
+
+// 2. distinct() - nilai unik
+// Lihat semua author unik
+db.books.distinct("author")
+
+// Lihat semua publisher unik
+db.books.distinct("publisher")
+
+// Lihat semua tahun unik (urut)
+db.books.distinct("year").sort()
+
+// 3. estimatedDocumentCount() - lebih cepat untuk estimasi
+db.books.estimatedDocumentCount()
+
+// 4. Kombinasi distinct + sort via aggregation
+// Tampilkan author unik beserta jumlah bukunya
+db.books.aggregate([
+    {
+        $group: {
+            _id: "$author",
+            jumlahBuku: { $sum: 1 }
+        }
+    },
+    { $sort: { jumlahBuku: -1 } }
+])
+
+// 5. find().count() - cara lama (masih bisa)
+db.books.find({ publisher: "Gramedia" }).count()
+
+
+// 1. Cari buku yang punya tag "fantasy"
+db.books.find(
+    { tags: "fantasy" },
+    { title: 1, tags: 1, _id: 0 }
+)
+
+// 2. $all - cari buku yang punya SEMUA tag tersebut
+// Cari buku dengan tag "fantasy" DAN "indonesian"
+db.books.find(
+    { tags: { $all: ["fantasy", "indonesian"] } },
+    { title: 1, tags: 1, _id: 0 }
+)
+
+// 3. $in - cari buku dengan salah satu tag
+// Cari buku dengan tag "classic" atau "satire"
+db.books.find(
+    { tags: { $in: ["classic", "satire"] } },
+    { title: 1, tags: 1, _id: 0 }
+)
+
+// 4. $size - cari array dengan panjang tertentu
+// Cari buku dengan 3 tags
+db.books.find(
+    { tags: { $size: 3 } },
+    { title: 1, tags: 1, _id: 0 }
+)
+
+// 5. $elemMatch - kondisi spesifik pada array element
+// (untuk array of objects, bukan string)
+
+// 6. Tambah tag ke array ($push)
+db.books.updateOne(
+    { title: "Hujan" },
+    { $push: { tags: "bestseller" } }
+)
+
+// 7. Hapus tag dari array ($pull)
+db.books.updateOne(
+    { title: "Hujan" },
+    { $pull: { tags: "bestseller" } }
+)
+
+
+// ============================================
+// TEMPLATE LENGKAP QUERY MONGODB
+// ============================================
+
+// 1. BASIC CRUD
+db.books.insertOne({})                    // Create one
+db.books.insertMany([])                    // Create many
+db.books.find({})                          // Read all
+db.books.find({ filter })                   // Read with filter
+db.books.updateOne({filter}, {$set: {}})   // Update one
+db.books.updateMany({filter}, {$set: {}})  // Update many
+db.books.deleteOne({filter})                // Delete one
+db.books.deleteMany({filter})               // Delete many
+
+// 2. COMPARISON
+{ field: { $gt: value } }                   // Greater than
+{ field: { $gte: value } }                  // Greater than or equal
+{ field: { $lt: value } }                    // Less than
+{ field: { $lte: value } }                   // Less than or equal
+{ field: { $ne: value } }                    // Not equal
+{ field: { $in: [v1, v2] } }                 // In array
+{ field: { $nin: [v1, v2] } }                // Not in array
+
+// 3. LOGICAL
+{ $and: [cond1, cond2] }                     // AND
+{ $or: [cond1, cond2] }                      // OR
+{ field: { $not: { $eq: value } } }          // NOT
+
+// 4. EXISTENCE
+{ field: { $exists: true } }                 // Field exists
+{ field: { $exists: false } }                // Field doesn't exist
+
+// 5. TEXT SEARCH
+{ field: { $regex: /pattern/ } }             // Case sensitive
+{ field: { $regex: /pattern/i } }            // Case insensitive
+{ field: { $regex: /^pattern/ } }            // Starts with
+{ field: { $regex: /pattern$/ } }            // Ends with
+
+// 6. PAGINATION
+.find().sort({ field: 1 })                   // Ascending
+.find().sort({ field: -1 })                   // Descending
+.find().limit(n)                              // Limit results
+.find().skip(n)                               // Skip results
+.find().skip(n).limit(m)                      // Pagination
+
+// 7. PROJECTION
+.find({}, { field1: 1, field2: 1, _id: 0 })   // Include fields
+.find({}, { field1: 0 })                       // Exclude fields
+
+// 8. AGGREGATION
+.aggregate([
+    { $match: { filter } },                    // Filtering
+    { $group: { _id: "$field", total: {$sum:1} } }, // Grouping
+    { $sort: { total: -1 } },                   // Sorting
+    { $project: { newField: "$oldField" } }     // Reshaping
+])
+
+// 9. UPDATE OPERATORS
+{ $set: { field: value } }                     // Set value
+{ $inc: { field: amount } }                     // Increment
+{ $mul: { field: number } }                     // Multiply
+{ $unset: { field: "" } }                       // Remove field
+{ $rename: { old: "new" } }                     // Rename field
+
+// 10. UTILITY
+.countDocuments({ filter })                     // Count
+.distinct("field")                               // Unique values
